@@ -73,3 +73,10 @@ void consume_entry(struct dish *di, struct entry *e)
     (void) pthread_mutex_unlock(&di->q_lock);
 
 }
+
+void destroy_dish(struct dish *di)
+{
+    pthread_mutex_destroy(&di->q_lock);
+    pthread_cond_destroy(&di->q_empty);
+    pthread_cond_destroy(&di->q_full);
+}
